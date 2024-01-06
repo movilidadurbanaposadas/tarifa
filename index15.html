@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipalidad Posadas</title>
+    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <!-- Boostrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!-- Css -->
+        <link rel="stylesheet" href="style.css">
+      
+       
+      
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap"
+          rel="stylesheet">
+    <!-- Custom styles for this template-->
+   
+    <style>
+
+.logo-container {
+            display: inline-block;
+            margin-right: 20px; /* Ajusta el margen según sea necesario */
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+.d-flex.justify-content-between {
+            justify-content: space-between !important; /* Estilo para alinear las imágenes en extremos opuestos */
+        }
+
+        /* Estilos para los campos de entrada */
+        .input-icon {
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px 20px;
+        }
+
+        .input-icon.origin {
+            background-image: url("imagenes/flag.png");
+            /* Ruta a tu icono de partida */
+        }
+
+        .input-icon.destination {
+            background-image: url("imagenes/flag.png");
+            /* Ruta a tu icono de llegada */
+        }
+
+        /* Estilos generales */
+        .header {
+            background-color: rgba(102, 187, 106, 0.8);
+            /* Color verde claro semi-transparente */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            padding-bottom: 50px;
+            /* Ajusta el valor según la cantidad de espacio que desees entre el contenido principal y el footer */
+        }
+
+        /* Estilos para el pie de página */
+        .footer {
+            background-color: rgba(102, 187, 106, 0.8);
+            /* Color verde claro semi-transparente */
+            color: white;
+
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+ /* Estilos para imágenes en dispositivos móviles */
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        order: 1; /* Cambiar el orden para que el logo esté al final */
+    }
+    
+    .logo-container img {
+        max-width: 100%; /* Asegurar que la imagen se ajuste al ancho del contenedor */
+        height: auto;
+    }
+}
+
+@viewport {
+    width: device-width;
+    zoom: 1.0; /* Valor predeterminado de zoom */
+}
+        h1 {
+            text-align: center;
+            padding: 5px 0;
+            background-color: #333333;
+            color: white;
+            margin: 0;
+        }
+
+        .calculator-header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .calculator-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .message {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: green;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Mapa */
+        #map {
+            height: 300px;
+            margin-top: 10px;
+            /* Ajusta el valor según tus necesidades */
+            margin-bottom: 10px;
+            /* Ajusta el valor según tus necesidades */
+        }
+
+        /* Barra de progreso */
+        .progress-bar {
+            display: none;
+            height: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 0;
+            background-color: #4CAF50;
+        }
+
+        /* Responsividad */
+        @media screen and (max-width: 768px) {
+            .calculator-container {
+                padding: 10px;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                padding: 8px;
+            }
+
+            button {
+                padding: 8px 16px;
+            }
+
+            #map {
+                height: 200px;
+            }
+        }
+
+        main {
+            /* Estilos para el contenido principal */
+            margin-top: 0px;
+            /* Ajusta el valor según la cantidad de espacio que desees */
+        }
+        .header {
+            background-color: rgba(102, 187, 106, 0.8);
+            /* Color verde claro semi-transparente */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .seccion-oscura {
+    color: white;
+    background-color: rgba(102, 187, 106, 0.8);
+}
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            margin-right: 10px; /* Ajusta el margen según sea necesario */
+        }
+    </style>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2cPyC7h1emIUPYHmjq8TBrWZx7YGUisw&libraries=places,drawing"></script>
+
+    <script>
+
+        var map;
+        var directionsService;
+        var directionsDisplay;
+        var markers = [];
+        var origenAutocomplete, destinoAutocomplete;
+        var selectedOrigin = false;
+        var selectedDestination = false;
+        var origen;
+        var destino;
+        var selectedMode;
+        var ubicacionesAnteriores = {
+            origein: null,
+            destination: null,
+            travelMode: null
+        };
+        var mapClickListener;
+
+
+        function initMap() {
+            var origenInput = document.getElementById("origen");
+            var destinoInput = document.getElementById("destino");
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -27.3621, lng: -55.9009 },
+                zoom: 14,
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(map);
+
+            // Autocompletar origen y destino
+            origenAutocomplete = new google.maps.places.Autocomplete(document.getElementById("origen"), {
+                componentRestrictions: { country: 'AR' } // Limitar a Argentina (cambia 'AR' al código del país deseado)
+            });
+            destinoAutocomplete = new google.maps.places.Autocomplete(document.getElementById("destino"), {
+                componentRestrictions: { country: 'AR' } // Limitar a Argentina (cambia 'AR' al código del país deseado)
+            });
+
+            // Limpiar selección cuando se escriba en los campos de entrada
+            origenAutocomplete.addListener("place_changed", function () {
+                selectedOrigin = false;
+                selectedDestination = false;
+            });
+
+            destinoAutocomplete.addListener("place_changed", function () {
+                selectedOrigin = false;
+                selectedDestination = false;
+            });
+
+            // Manejar el clic en el mapa para seleccionar el origen o destino
+            map.addListener("click", function (event) {
+                if (selectedOrigin && selectedDestination) {
+                    clearMarkers();
+                    selectedOrigin = false;
+                    selectedDestination = false;
+                    google.maps.event.removeListener(mapClickListener);
+                    mapClickListener = null;
+                }
+
+                var targetInput = document.activeElement;
+
+                if (targetInput.id === "origen") {
+                    setPointOnMap(event.latLng, "origen");
+                } else if (targetInput.id === "destino") {
+                    setPointOnMap(event.latLng, "destino");
+                }
+            });
+
+            // Obtener la ubicación actual si está disponible
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geocoder = new google.maps.Geocoder();
+                    var currentLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    addMarker(currentLocation);
+
+                    geocoder.geocode({ 'location': currentLocation }, function (results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                document.getElementById("origen").value = results[0].formatted_address;
+                            } else {
+                                console.error('No se encontraron resultados de geocodificación.');
+                            }
+                        } else {
+                            console.error('Error de geocodificación debido a: ' + status);
+                        }
+                    });
+                }, function (error) {
+                    console.error(error);
+                });
+            } else {
+                console.error("Tu navegador no admite la geolocalización.");
+            }
+
+            // Agregar marcadores cuando se hace clic en el mapa
+            map.addListener("click", function (event) {
+                addMarker(event.latLng);
+            });
+        }
+
+
+
+        function addMarker(location) {
+            clearMarkers();
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+            markers.push(marker);
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'location': location }, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        if (ubicacionesAnteriores.origen === null) {
+                            document.getElementById("origen").value = results[0].formatted_address;
+                            ubicacionesAnteriores.origen = location;
+                        } else if (ubicacionesAnteriores.destino === null) {
+                            document.getElementById("destino").value = results[0].formatted_address;
+                            ubicacionesAnteriores.destino = location;
+                        }
+                    } else {
+                        console.error('No se encontraron resultados de geocodificación.');
+                    }
+                } else {
+                    console.error('Error de geocodificación debido a: ' + status);
+                }
+            });
+        }
+
+        var mapClickListener; // Variable para almacenar el oyente de eventos "click" en el mapa
+
+        function setPointOnMap(location) {
+            var targetInput = document.activeElement;
+
+            if (targetInput.id === "origen") {
+                if (!selectedOrigin) {
+
+                    document.getElementById("origen").value = "";
+                    origen = location;
+                    addMarker(location, "origen");
+                    selectedOrigin = true;
+                    selectedDestination = false;
+                    if (!mapClickListener) {
+                        mapClickListener = map.addListener("click", clickListener);
+                    }
+                }
+            } else if (targetInput.id === "destino") {
+                if (!selectedDestination) {
+                    document.getElementById("destino").value = "";
+                    addMarker(location, "destino");
+                    selectedOrigin = false;
+                    selectedDestination = true;
+                    if (!mapClickListener) {
+                        mapClickListener = map.addListener("click", clickListener);
+                    }
+                }
+            } else {
+                // Clear markers and reset selection if neither origin nor destination input was clicked
+                clearMarkers();
+                selectedOrigin = false;
+                selectedDestination = false;
+                if (mapClickListener) {
+                    google.maps.event.removeListener(mapClickListener);
+                    mapClickListener = null;
+                }
+            }
+            calcularDistancia();
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var buscarEnMapaLinks = document.querySelectorAll(".buscar-en-mapa");
+            buscarEnMapaLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+                    var target = this.getAttribute("data-target");
+                    abrirMapa(target);
+                });
+            });
+        });
+
+
+        function clickListener(event) {
+            setPointOnMap(event.latLng);
+        }
+
+        function reiniciarSeleccion() {
+            selectedOrigin = false;
+            selectedDestination = false;
+            if (mapClickListener) {
+                google.maps.event.removeListener(mapClickListener);
+                mapClickListener = null;
+            }
+            clearMarkers(); // Limpiar los marcadores
+            directionsDisplay.setMap(null); // Borrar la ruta en el mapa
+            document.getElementById("origen").value = ""; // Limpiar campo de origen
+            document.getElementById("destino").value = ""; // Limpiar campo de destino
+            document.getElementById("resultado").innerHTML = ""; // Limpiar resultado
+            document.getElementById("mensaje").innerHTML = "Formulario limpiado y ruta borrada.";
+        }
+
+
+        function clearMarkers() {
+            markers.forEach(function (marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+        }
+
+
+        function buscarDesdeMapa(target) {
+            clearMarkers();
+            var geocoder = new google.maps.Geocoder();
+
+            // Elimina componentRestrictions para permitir búsquedas globales
+            mapClickListener = map.addListener("click", function (event) {
+                addMarker(event.latLng);
+                geocoder.geocode({ 'location': event.latLng }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            if (target === 'origen') {
+                                document.getElementById('origen').value = results[0].formatted_address;
+                            } else if (target === 'destino') {
+                                document.getElementById('destino').value = results[0].formatted_address;
+                            }
+
+                            if (document.getElementById('origen').value !== '' && document.getElementById('destino').value !== '') {
+
+                            }
+                        } else {
+                            console.error('No se encontraron resultados de geocodificación.');
+                            mostrarMensajeError();
+                        }
+                    } else {
+                        console.error('Error de geocodificación debido a: ' + status);
+                        mostrarMensajeError();
+                    }
+                    // Remover el listener después de agregar el marcador y establecer la dirección
+                    google.maps.event.removeListener(mapClickListener);
+                });
+            });
+        }
+
+
+        function mostrarMensajeError() {
+            document.getElementById("resultado").innerHTML = 'No se pudo encontrar una dirección válida en el país seleccionado.';
+        }
+
+        function buscarUbicacion(targetInputId) {
+            var inputElement = document.getElementById(targetInputId);
+
+            if (inputElement && inputElement instanceof HTMLInputElement) {
+
+
+                var address = inputElement.value;
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({ address: address }, function (results, status) {
+                    if (status === "OK" && results[0] && results[0].geometry && results[0].geometry.location) {
+                        var location = results[0].geometry.location;
+                        buscarDesdeMapa(targetInputId.replace("-search", ""), location);
+                    } else {
+                        console.error("No se encontraron resultados para la dirección ingresada.");
+                    }
+                });
+            } else {
+                console.error("Elemento no encontrado o no es un input.");
+            }
+        }
+
+
+
+
+
+
+        function trazarRuta() {
+            console.log("Origen:",);
+            var origen = document.getElementById("origen").value;
+            var destino = document.getElementById("destino").value;
+            var selectedMode = document.getElementById("modoTransporte").value;
+            var progressBar = document.getElementById("progress-bar");
+            var progressBarInner = document.querySelector(".progress-bar-inner");
+
+            progressBar.style.display = "block"; // Mostrar la barra de progreso
+            progressBarInner.style.width = "0%"; // Reiniciar la barra de progreso
+            if (!selectedMode) {
+                selectedMode = "DRIVING"; // Cambia esto al modo predeterminado que desees
+            }
+            var request = {
+                origin: origen,
+                destination: destino,
+                travelMode: google.maps.TravelMode[selectedMode] // Usar el modo de transporte seleccionado
+            };
+
+            directionsService.route(request, function (result, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(result);
+                    mostrarRutaEnMapa(result);
+                    document.getElementById("mensaje").innerHTML = "Ruta trazada exitosamente.";
+                } else {
+                    console.error('Error al trazar la ruta');
+                    document.getElementById("mensaje").innerHTML = "Error al trazar la ruta.";
+                }
+
+                progressBar.style.display = "none"; // Ocultar la barra de progreso
+            });
+
+            // Actualizar la barra de progreso durante el proceso
+            var progressInterval = setInterval(function () {
+                var route = directionsDisplay.getDirections();
+                if (route && route.routes && route.routes[0]) {
+                    var totalSteps = route.routes[0].legs[0].steps.length;
+                    var completedSteps = route.routes[0].legs[0].steps.filter(step => step.distance && step.distance.value).length;
+                    var progressPercentage = (completedSteps / totalSteps) * 100;
+                    progressBarInner.style.width = progressPercentage + "%";
+                    if (progressPercentage >= 100) {
+                        clearInterval(progressInterval);
+                    }
+                }
+            }, 200);
+            //calcularDistancia();
+        }
+
+
+
+        function mostrarRutaEnMapa(route) {
+            directionsDisplay.setDirections(route);
+        }
+
+        function cerrarMapaModal() {
+            //var modal = document.getElementById("mapModal");
+            modal.style.display = "none";
+        }
+        function calcularDistancia() {
+            var origen = document.getElementById("origen").value;
+            var destino = document.getElementById("destino").value;
+            var selectedModeElement = document.getElementById("modoTransporte");
+            var selectedMode = selectedModeElement.value;
+            var travelMode;
+            if (!selectedMode || selectedMode === "") {
+                document.getElementById("resultado").innerHTML = 'Por favor, selecciona un modo de transporte (Remis o Taxi).';
+                return;
+            }
+            if (selectedMode === "TAXI") {
+                travelMode = google.maps.TravelMode.DRIVING; // Suponiendo que TAXI es equivalente a DRIVING
+            } else if (selectedMode === "REMIS") {
+                travelMode = google.maps.TravelMode.DRIVING; // Suponiendo que REMIS también es equivalente a DRIVING
+            } else {
+                // Maneja los modos no admitidos o proporciona un valor predeterminado
+                console.error("Modo de viaje no admitido: " + selectedMode);
+                return;
+            }
+            if (origen === "" || destino === "") {
+                console.log("Campos de origen y/o destino vacíos.");
+                document.getElementById("resultado").innerHTML = 'Debes seleccionar tanto el punto de partida como el punto de llegada.';
+                return;
+            }
+
+            var request = {
+                origin: origen,
+                destination: destino,
+                travelMode: travelMode
+            };
+
+            directionsService.route(request, function (result, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(result);
+                    var distancia = result.routes[0].legs[0].distance.value / 1000;
+                    var duracion = result.routes[0].legs[0].duration.text;
+
+                    var mensaje = `La distancia es: ${distancia.toFixed(2)} km<br>El tiempo estimado de llegada es: ${duracion}`;
+                    
+                    var cuadras = (distancia * 10 );
+                    var cuadras1 = Math.ceil(cuadras);
+
+                    if (selectedMode === "TAXI") {
+                        var costo = ((cuadras1 * 1) * 60) + 720;
+                        mensaje += `<br>El costo estimado es: ${costo.toFixed(2)} pesos`;
+                    } else if (selectedMode === "REMIS") {
+                        var costo = (((cuadras1 * 1) * 60) + 720) * 1.1;
+                        mensaje += `<br>El costo estimado es: ${costo.toFixed(2)} pesos`;
+                    }
+
+                    document.getElementById("resultado").innerHTML = mensaje;
+                    trazarRuta();
+                } else {
+                    document.getElementById("resultado").innerHTML = 'Error al calcular la distancia, verificar punto de inicio / punto de llegada';
+                }
+            });
+        }
+
+        function calcularDistancia2() {
+            var origen = document.getElementById("origen").value;
+            var destino = document.getElementById("destino").value;
+            var selectedMode = document.getElementById("modoTransporte").value; // Obtener el modo de transporte seleccionado
+            var travelMode = google.maps.TravelMode.DRIVING;
+            // Verificar si se ha seleccionado un modo de transporte; de lo contrario, usa un modo predeterminado
+            if (!selectedMode) {
+                selectedMode = "DRIVING"; // Cambia esto al modo predeterminado que desees
+            }
+
+            if (origen === "" || destino === "") {
+                console.log("Campos de origen y/o destino vacíos.");
+                document.getElementById("resultado").innerHTML = 'Debes seleccionar tanto el punto de partida como el punto de llegada.';
+                return;
+            }
+
+            var request = {
+                origin: origen,
+                destination: destino,
+                travelMode: travelMode // Usar el modo de transporte seleccionado o predeterminado
+            };
+
+            directionsService.route(request, function (result, status) {
+                if (status === 'OK') {
+                    trazarRuta();
+                }
+            });
+        }
+
+
+        function setPointOnMap(location, target) {
+            var targetInput = document.getElementById(target);
+            targetInput.value = "";
+
+            buscarDesdeMapa(target, location);
+
+            // Actualizar las variables selectedOrigin y selectedDestination
+            if (target === "origen") {
+                selectedOrigin = true;
+                selectedDestination = false;
+            } else if (target === "destino") {
+                selectedOrigin = false;
+                selectedDestination = true;
+            }
+
+            // Eliminar el oyente de eventos anterior
+            if (mapClickListener) {
+                google.maps.event.removeListener(mapClickListener);
+                mapClickListener = null;
+            }
+
+            // Llamar a la función para trazar la ruta automáticamente
+            if (selectedOrigin && selectedDestination) {
+                calcularDistancia(); // Agrega esta línea para trazar la ruta automáticamente
+            }
+        }
+
+
+
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.POLYLINE,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: [google.maps.drawing.OverlayType.POLYLINE]
+            },
+            polylineOptions: {
+                editable: true,
+                strokeColor: '#FF0000',
+                strokeWeight: 2
+            }
+        });
+
+        drawingManager.setMap(map);
+
+        google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
+            if (event.type == google.maps.drawing.OverlayType.POLYLINE) {
+                var path = event.overlay.getPath();
+                var startPoint = path.getAt(0); // Primer punto como punto de partida
+                var endPoint = path.getAt(path.getLength() - 1); // Último punto como punto de llegada
+
+                // Aquí puedes hacer lo que necesites con las coordenadas (por ejemplo, mostrarlas en los campos de entrada).
+                document.getElementById('origen').value = startPoint.toString();
+                document.getElementById('destino').value = endPoint.toString();
+
+                // Llama a calcularDistancia() aquí para actualizar la distancia cuando se traza una ruta en el mapa.
+                calcularDistancia();
+            }
+        });
+
+
+        function llamarSetPointOnMap(target) {
+            // Obtener la ubicación ingresada por el usuario en el campo correspondiente
+            var locationInput = document.getElementById(target);
+            var locationText = locationInput.value;
+
+            // Convertir la ubicación de texto a coordenadas geográficas utilizando geocodificación (puedes usar la función geocodificadora que ya tienes)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': locationText }, function (results, status) {
+                if (status === 'OK' && results[0] && results[0].geometry && results[0].geometry.location) {
+                    var location = results[0].geometry.location;
+
+                    // Llamar a setPointOnMap con la ubicación y el destino adecuados
+                    setPointOnMap(location, target);
+                } else {
+                    console.error("No se encontraron resultados para la dirección ingresada.");
+                }
+            });
+        }
+
+        // Función para inicializar el mapa en el modal
+        function initMapModal(target) {
+            var modalMap = new google.maps.Map(document.getElementById("modalMap"), {
+                center: { lat: -34.603722, lng: -58.381592 },
+                zoom: 13,
+            });
+
+            var modalClickListener = modalMap.addListener("click", function (event) {
+                document.getElementById(target).value = "";
+                buscarDesdeMapa(target, event.latLng);
+                modal.style.display = "none";
+                google.maps.event.removeListener(modalClickListener);
+            });
+        }
+    </script>
+</head>
+
+
+<body onload="initMap()">
+    <div class="header">
+        <div class="logo-container">
+            <img src="img/logo-secretaría.png" width="310px" height="90px" alt="Logo Secretaría">
+        </div>
+        <div class="logo-container">
+            <img src="img/posadas1.png" width="200" height="80" alt="Posadas 1">
+        </div>
+    </div>
+
+    <div class="calculator-container">
+        <div id="map"></div>
+
+        <label for="origen">Punto de partida:</label>
+        <input type="text" id="origen" nblur="llamarSetPointOnMap('origen')" oninput="calcularDistancia2()">
+
+        <button onclick="buscarDesdeMapa('origen')">Buscar desde Mapa</button>
+
+        <label for="destino">Punto de llegada:</label>
+        <input type="text" id="destino" nblur="llamarSetPointOnMap('destino')" oninput="calcularDistancia2()">
+
+        <button onclick="buscarDesdeMapa('destino')">Buscar desde Mapa</button>
+
+        <label for="modoTransporte">Modo de Transporte:</label>
+        <select id="modoTransporte" onchange="calcularDistancia()">
+            <option>Seleccione medio de Transporte</option>
+            <option value="TAXI">Taxi</option>
+            <option value="REMIS">Remis</option>
+        </select>
+
+        <div id="progress-bar" class="progress-bar">
+            <div class="progress-bar-inner"></div>
+        </div>
+        <p id="resultado"></p>
+        <p id="mensaje" class="message"></p>
+    </div>
+
+    <div class="container-fluid">
+        <style>
+            .btn-success {
+                background-color: #0d573e;
+                border-color: #0d573e;
+                color: azure;
+            }
+        </style>
+
+        <br>
+        <footer class="seccion-oscura d-flex flex-column align-items-center justify-content-center ">
+   
+    
+            <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
+              
+              
+              <a href="https://instagram.com/movilidadurbanaposadas?igshid=NzZlODBkYWE4Ng==" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://api.whatsapp.com/send?phone=3765165654" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-whatsapp"></i>
+              </a>
+              
+              <a href="mailto:mov.urb.permisos@gmail.com" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-envelope"></i>
+              </a>
+            </div>
+            <div class="derechos-de-autor">
+                <b>  Secretaria Movilidad Urbana (2023)&#169; </b>
+             
+            </div>
+          </footer>
+        <br>
+    </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
